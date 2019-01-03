@@ -1,0 +1,12 @@
+{
+  "name": "Proto Boi",
+  "version": "1.0.2",
+  "description": "Testing and weirdness",
+  "main": "bot.js",
+  "author": "Todd Knight",
+  "dependecies": {},
+  "dependencies": {
+    "image-downloader": "^3.4.2",
+    "jimp": "^0.6.0"
+  }
+}
