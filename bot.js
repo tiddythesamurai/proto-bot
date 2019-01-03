@@ -34,20 +34,20 @@ client.on('message', (message) => {
 				return;
 		}
 	}
-	if(message.attachments.size > 0 && !message.author.bot){
+	if(message.attachments.size > 0 && (message.author.id != client.user.id)){
 		var att = message.attachments.array();
-		console.log(`image deepfrying...`);
 		Jimp.read(att[0].url)
 			.then(image =>{
-
+				console.log(`image deepfrying...`);
+				image.resize(300,Jimp.AUTO);
 				for(i = 0;i < 3; i++){
 					image.contrast(0.7);
 					image.color([
-					  { apply: 'desaturate', params: [35] },
+					  { apply: 'desaturate', params: [30] },
 					  { apply: 'mix', params: ['#FF7D4F'] },
-					  {apply: 'brighten', params: [0.15]}
+					  {apply: 'brighten', params: [0.2]}
 					]);
-					image.quality(10);
+					image.quality(20);
 					image.write('./img.jpg');
 				}
 				image.write('img.jpg');
@@ -59,6 +59,7 @@ client.on('message', (message) => {
 				console.log(`image deepfried`);
 				return;
 			});
+			return;
 	}
 });
 client.on('ready', () => {
