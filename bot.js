@@ -4,7 +4,7 @@ const config = require("./config.json");
 const package = ("./package.json");
 const lib = require("./lib.js");
 const Jimp = require('jimp');
-const args = ['info'];
+const args = ['about', 'encode', 'decode'];
 client.on('message', (message) => {
 	if(message.content[0] == config.prefix && !message.author.bot){
 		var command = lib.parseCommand(message);
@@ -22,16 +22,37 @@ client.on('message', (message) => {
 						message.channel.send(`ID: ${message.channel.id}`);
 						break;
 					case undefined:
-						message.channel.send('Type `!info <arg>` to display some info, the current `args` are: `me`(your info), `you` (the bot\'s info), and `channel` (self-explanatory)');
+						message.channel.send('Type `!about <arg>` to display some info, the current `args` are: `me`(your info), `you` (the bot\'s info), and `channel` (self-explanatory)');
 						break;
 					default:
 						console.log('Arg error');
 						break;
 				}
+				break;
+			case args[1]:
+				switch(command[1]){
+					case undefined:
+						message.channel.send('You need to provide me with a message to encode!');
+						break;
+					default:
+						message.channel.send("Encoded: `" + lib.encode(command[1]) + '`');
+						break;
+				}
+				break;
+			case args[2]:
+				switch(command[1]){
+					case undefined:
+						message.channel.send('You need to provide me with a message to decode!');
+						break;
+					default:
+						message.channel.send("Decoded: `" + lib.decode(command[1]) + '`');
+						break;
+				}
+				break;
 			case undefined:
-				return;
+				break;
 			default:
-				return;
+				break;
 		}
 	}
 	if(message.attachments.size > 0 && (message.author.id != client.user.id)){

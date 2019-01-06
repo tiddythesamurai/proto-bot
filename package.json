@@ -6,6 +6,8 @@
   "author": "Todd Knight",
   "dependecies": {},
   "dependencies": {
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "image-downloader": "^3.4.2",
     "jimp": "^0.6.0"
   }
