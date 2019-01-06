@@ -39,15 +39,15 @@ client.on('message', (message) => {
 		Jimp.read(att[0].url)
 			.then(image =>{
 				console.log(`image deepfrying...`);
-				image.resize(300,Jimp.AUTO);
+				image.resize(lib.rand(350, 501),Jimp.AUTO);
 				for(i = 0;i < 3; i++){
-					image.contrast(0.7);
+					image.contrast(Math.random());
 					image.color([
-					  { apply: 'desaturate', params: [30] },
-					  { apply: 'mix', params: ['#FF7D4F'] },
+					  { apply: 'desaturate', params: [lib.rand(20, 31)] },
+					  { apply: 'mix', params: ['#F01E14', lib.rand(15,26)] },
 					  {apply: 'brighten', params: [0.2]}
 					]);
-					image.quality(20);
+					image.quality(lib.rand(10, 16));
 					image.write('./img.jpg');
 				}
 				image.write('img.jpg');
